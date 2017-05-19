@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数据库连接测试</title>
+</head>
+<body>
+
+<script type="text/javascript">
+document.write("sdfasfda111111111111111111111");
+var con = new ActiveXObject("ADODB.Connection");
+con.ConnectionString = "DRIVER={MySQL ODBC 5.3 Driver};OPTION=3;SERVER=localhost;User=root;Password=root;Database=User;Port=3306";  
+con.open;
+var rs = new ActiveXObject("ADODB.Recordset");
+rs.open("select * from User", con);
+while (!rs.eof) {
+var u = rs.Fields("User");
+document.write(u);
+rs.moveNext;
+}
+document.write("sdfasfda");
+rs.close();
+rs = null; 
+con.close();
+con = null;
+
+</script>
+
+
+</body>
+</html>
