@@ -22,52 +22,52 @@ public class DataAnalyseReducer extends Reducer<Text, Text, Text, Text> {
 		long StayTime = 0;
 		double range = MAX_RANGE;
 		boolean flag = false;
-		for(Text value :values){
-			String lineValue = value.toString();
-			String [] data = lineValue.split("\t");
-			double nowrange = Double.parseDouble(data[1]);
-			
-			if(LatestTime ==null||CalculateTime.CalculateTimeGap(LatestTime, data[0])<0){
-				LatestTime = data[0];
-			}
-			if(OldestTime ==null||CalculateTime.CalculateTimeGap(OldestTime, data[0])<0){
-				OldestTime = data[0];
-			}
-			if(CalculateTime.CalculateTimeGap(OldestTime, data[0])<=COMEIN_TIME && nowrange<=COMEIN_RANGE){
-				OldestTime = data[0];
-				if(nowrange<=range)
-					range = nowrange;
-				flag = true;
-			}
-			else if(CalculateTime.CalculateTimeGap(OldestTime, data[0])>COMEIN_TIME && nowrange<=COMEIN_RANGE){
-				if(flag == true){
-					StayTime = CalculateTime.CalculateTimeGap(LatestTime, OldestTime);
-					context.write(key,new Text(OldestTime+"\t"+LatestTime+"\t"+String.valueOf(StayTime)+"\t"+String.valueOf(range)));
-					flag = false;
-					LatestTime = data[0];
-					OldestTime = data[0];
-					range = nowrange;
-				}
-			}
-//			else if(CalculateTime.CalculateTimeGap(OldestTime, data[0])>COMEIN_TIME && nowrange>COMEIN_RANGE){
+//		for(Text value :values){
+//			String lineValue = value.toString();
+//			String [] data = lineValue.split("\t");
+//			double nowrange = Double.parseDouble(data[1]);
+//			
+//			if(LatestTime ==null||CalculateTime.CalculateTimeGap(LatestTime, data[0])<0){
+//				LatestTime = data[0];
+//			}
+//			if(OldestTime ==null||CalculateTime.CalculateTimeGap(OldestTime, data[0])<0){
+//				OldestTime = data[0];
+//			}
+//			if(CalculateTime.CalculateTimeGap(OldestTime, data[0])<=COMEIN_TIME && nowrange<=COMEIN_RANGE){
+//				OldestTime = data[0];
+//				if(nowrange<=range)
+//					range = nowrange;
+//				flag = true;
+//			}
+//			else if(CalculateTime.CalculateTimeGap(OldestTime, data[0])>COMEIN_TIME && nowrange<=COMEIN_RANGE){
 //				if(flag == true){
-//					StayTime = CalculateTime.CalculateTimeGap(OldestTime, data[0]);
+//					StayTime = CalculateTime.CalculateTimeGap(LatestTime, OldestTime);
 //					context.write(key,new Text(OldestTime+"\t"+LatestTime+"\t"+String.valueOf(StayTime)+"\t"+String.valueOf(range)));
 //					flag = false;
 //					LatestTime = data[0];
 //					OldestTime = data[0];
 //					range = nowrange;
 //				}
-//				OldestTime = data[0];
-//				if(nowrange<=range)
-//					range = nowrange;	
 //			}
-//			else{
-//				OldestTime = data[0];
-//				if(nowrange<=range)
-//					range = nowrange;
-//			}
-		}
+////			else if(CalculateTime.CalculateTimeGap(OldestTime, data[0])>COMEIN_TIME && nowrange>COMEIN_RANGE){
+////				if(flag == true){
+////					StayTime = CalculateTime.CalculateTimeGap(OldestTime, data[0]);
+////					context.write(key,new Text(OldestTime+"\t"+LatestTime+"\t"+String.valueOf(StayTime)+"\t"+String.valueOf(range)));
+////					flag = false;
+////					LatestTime = data[0];
+////					OldestTime = data[0];
+////					range = nowrange;
+////				}
+////				OldestTime = data[0];
+////				if(nowrange<=range)
+////					range = nowrange;	
+////			}
+////			else{
+////				OldestTime = data[0];
+////				if(nowrange<=range)
+////					range = nowrange;
+////			}
+//		}
 		StayTime = CalculateTime.CalculateTimeGap(LatestTime, OldestTime);
 		context.write(key,new Text(OldestTime+"\t"+LatestTime+"\t"+String.valueOf(StayTime)+"\t"+String.valueOf(range)));
 		
