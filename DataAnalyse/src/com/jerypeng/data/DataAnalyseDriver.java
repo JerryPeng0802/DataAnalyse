@@ -24,7 +24,7 @@ public class DataAnalyseDriver {
 		// TODO: specify a mapper
 		job.setMapperClass(DataAnalyseMapper.class);
 		// TODO: specify a reducer
-		//job.setReducerClass(DataAnalyseReducer.class);
+		job.setReducerClass(DataAnalyseReducer.class);
 
 		// TODO: specify output types
 		job.setOutputKeyClass(Text.class);
