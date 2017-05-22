@@ -25,5 +25,17 @@ public class CalculateTime {
 		}
 		return minutes;
 	}
+	
+	public static long CalculateTimeGapByDay(String date1,String date2){
+		long day = 0;
+		SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd kk:mm:ss YYYY",Locale.ENGLISH);
+		try {
+			day = (format.parse(date1).getTime()-format.parse(date2).getTime())/(1000*60*60*24);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return day;
+	}
 
 }
