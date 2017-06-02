@@ -6,17 +6,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import org.apache.tomcat.jni.User;
+
 public class CreatDirClass {
 	private File dir;
-	
+	String usr = System.getProperty("user.home");
 	public File CreatDir(Date date){
+		
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHH");
 		String now=simpleDateFormat.format(date);
 		String year = now.substring(0,4);
 		String month = now.substring(4,6);
 		String day = now.substring(6,8);
 		String hour = now.substring(8,10);
-		dir =new File("/home/jerrypeng/"+year+"/"+month+"/"+day);
+		dir =new File(usr+"/Data/"+year+"/"+month+"/"+day);
 		if(!dir.exists())
 			dir.mkdirs();
 		File file = new File(dir,hour+".txt");
@@ -37,7 +40,7 @@ public class CreatDirClass {
 		String month = now.substring(4,6);
 		String day = now.substring(6,8);
 		String hour = now.substring(8,10);
-		dir =new File("/home/Data/"+year+"/"+month+"/"+day);
+		dir =new File(usr+"/Data/"+year+"/"+month+"/"+day);
 		if(!dir.exists())
 			dir.mkdirs();
 		File file = new File(dir,hour+".txt");

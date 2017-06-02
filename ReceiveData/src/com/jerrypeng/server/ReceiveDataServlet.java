@@ -45,7 +45,6 @@ public class ReceiveDataServlet extends HttpServlet {
         while((s=bfr.readLine())!=null){
        	 sb.append(s);
         }
-        PrintWriter out = response.getWriter();
         String info1 = new String(sb);
         //String info = request.getParameter("data");
         String info = info1.substring(5);
