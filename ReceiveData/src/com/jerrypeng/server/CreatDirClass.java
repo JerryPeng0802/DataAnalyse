@@ -23,10 +23,11 @@ public class CreatDirClass {
 		return file;
 	}
 	public File CreatDir(String date){
-		SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd kk:mm:ss YYYY",Locale.ENGLISH);
+		SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd kk:mm:ss yyyy",Locale.ENGLISH);
 		Date inputtime = new Date();
 		try {
 			inputtime = format.parse(date);
+			
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -36,7 +37,7 @@ public class CreatDirClass {
 		String month = now.substring(4,6);
 		String day = now.substring(6,8);
 		String hour = now.substring(8,10);
-		dir =new File("/home/jerrypeng/"+year+"/"+month+"/"+day);
+		dir =new File("/home/Data/"+year+"/"+month+"/"+day);
 		if(!dir.exists())
 			dir.mkdirs();
 		File file = new File(dir,hour+".txt");

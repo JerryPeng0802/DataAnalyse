@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 
@@ -48,8 +46,9 @@ public class ReceiveDataServlet extends HttpServlet {
        	 sb.append(s);
         }
         PrintWriter out = response.getWriter();
-        String info = new String(sb);
-        out.println();
+        String info1 = new String(sb);
+        //String info = request.getParameter("data");
+        String info = info1.substring(5);
         JSONObject json = JSONObject.fromObject(info);
         String time = json.getString("time");
         File file = new CreatDirClass().CreatDir(time);
